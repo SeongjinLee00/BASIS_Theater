@@ -1,63 +1,37 @@
 <template>
   <div>
-    <h1>{{ article.title }}</h1>
-
+    <h1>{{ movie.title }}</h1>
     <p>
-      {{ article.content }}
+      {{ movie.content }}
     </p>
-    <!-- Article Edit/Delete UI -->
-    <div v-if="isAuthor">
-      <router-link :to="{ name: 'articleEdit', params: { articlePk } }">
-        <button>Edit</button>
-      </router-link>
-      |
-      <button @click="deleteArticle(articlePk)">Delete</button>
-    </div>
-
-    <!-- Article Like UI -->
-    <div>
-      Likeit:
-      <button
-        @click="likeArticle(articlePk)"
-      >{{ likeCount }}</button>
-    </div>
-
-    <hr />
-    <!-- Comment UI -->
-    <comment-list :comments="article.comments"></comment-list>
-
+    <!-- 더 추가해야함 -->
+    <vote-form></vote-form>
   </div>
 </template>
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import CommentList from '@/components/CommentList.vue'
-
+  import VoteForm from '@/components/VoteForm.vue'
 
 
   export default {
-    name: 'ArticleDetail',
-    components: { CommentList },
+    name: 'MovieDetail',
+    components: { CommentList, VoteForm },
     data() {
       return {
-        articlePk: this.$route.params.articlePk,
+        moviePk: this.$route.params.moviePk,
       }
     },
     computed: {
-      ...mapGetters(['isAuthor', 'article']),
-      likeCount() {
-        return this.article.like_users?.length
-      }
+      ...mapGetters(['movie']),
     },
     methods: {
       ...mapActions([
-        'fetchArticle',
-        'likeArticle',
-        'deleteArticle',
+        'fetchMovie',
       ])
     },
     created() {
-      this.fetchArticle(this.articlePk)
+      this.fetchMovie(this.moviePk)
     },
   }
 </script>

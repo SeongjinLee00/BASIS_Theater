@@ -1,33 +1,38 @@
 <template>
-  <div class="comment-list">
-    
-    <ul>
-      <comment-list-item 
-        v-for="comment in comments" 
-        :comment="comment" 
-        :key="comment.pk">
-      </comment-list-item>        
-    </ul>
-
-    <comment-list-form></comment-list-form>
-  </div>
+  <form @submit.prevent="onSubmit" class="comment-list-form">
+    <label for="comment">comment: </label>
+    <input type="text" id="comment" v-model="content" required>
+    <button>Comment</button>
+  </form>
 </template>
 
 <script>
-import CommentListItem from '@/components/CommentListItem.vue'
-import CommentListForm from '@/components/CommentListForm.vue'
-// import { mapGetters, mapActions } from 'vuex'
-
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'CommentList',
-  components: { CommentListForm, CommentListItem },
-  props: { comments: Array },
+  name: 'CommentListForm',
+  data() {
+    return {
+      content: ''
+    }
+  },
+  computed: {
+    ...mapGetters(['article']),
+  },
+  methods: {
+    ...mapActions(['createComment']),
+    onSubmit() {
+      this.createComment({ articlePk: this.article.pk, content: this.content, })
+      this.content = ''
+    }
+  }
 }
 </script>
 
 <style>
-.comment-list {
-  border: 1px solid blue;
+.comment-list-form {
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 1rem;
 }
 </style>

@@ -3,12 +3,12 @@ import Vuex from 'vuex'
 
 import movies from './modules/movies'
 import accounts from './modules/accounts'
-import communities from './modules/communities'
+import articles from './modules/articles'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    movies, accounts, communities
+    movies, accounts, articles
   },
 })
