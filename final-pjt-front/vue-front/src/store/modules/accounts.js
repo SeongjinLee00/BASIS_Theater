@@ -142,6 +142,7 @@ export default {
         url: drf.accounts.logout(),
         method: 'post',
         // data: {},
+        // token이 header에 있으니 토큰만 전해주면 된당
         headers: getters.authHeader,
       })
         .then(() => {
