@@ -1,6 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
+import LoginView from '@/views/LoginView.vue'
+import LogoutView from '@/views/LogoutView.vue'
+import SignupView from '@/views/SignupView.vue'
+import ProfileView from '@/views/ProfileView.vue'
+import NotFound404 from '../views/NotFound404.vue'
+
+import MovieListView from '@/views/MovieListView.vue'
+import MovieDetailView from '@/views/MovieDetailView.vue'
+import MovieNewView from '@/views/MovieNewView'
+import MovieEditView from '@/views/MovieEditView'
+
+import CommunityListView from '@/views/CommunityListView.vue'
+import CommunityDetailView from '@/views/CommunityDetailView.vue'
+import CommunityNewView from '@/views/CommunityNewView'
+import CommunityEditView from '@/views/CommunityEditView'
+
 
 Vue.use(VueRouter)
 
