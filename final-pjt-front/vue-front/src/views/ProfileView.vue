@@ -9,7 +9,7 @@
         <!-- 평점 및 평가한 영화  -->
         {{ vote.rating }}
         {{ vote.comment }}
-        <router-link :to="{ name: 'movie', params: { moviePk: vote.movie.pk } }">
+        <router-link :to="{ name: 'movie', params: { moviePk: vote.movie_pk } }">
           {{ movie.title }}
         </router-link>
       </li>
@@ -17,22 +17,22 @@
 
     <h2>작성한 리뷰</h2>
     <ul>
-      <li v-for="review in profile.reviews" :key="review.pk">
-        <router-link :to="{ name: 'review', params: { reviewPk: review.pk } }">
-          {{ review.title }}
-          {{ review.movie_title }}
+      <li v-for="article in profile.articles" :key="article.pk">
+        <router-link :to="{ name: 'article', params: { articlePk: article.pk } }">
+          {{ article.title }}
+          {{ article.movie_title }}
         </router-link>
       </li>
     </ul>
 
-    <h2>댓글 단 글</h2>
+    <!-- <h2>댓글 단 글</h2>
     <ul>
-      <li v-for="review in profile.reviews" :key="review.pk">
-        <router-link :to="{ name: 'review', params: { reviewPk: review.pk } }">
-          {{ review.title }}
+      <li v-for="comment in profile.comments" :key="comment.pk">
+        <router-link :to="{ name: 'article', params: { articlePk: comment.article_pk } }">
+          {{ article.title }}
         </router-link>
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 

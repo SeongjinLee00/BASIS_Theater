@@ -9,13 +9,11 @@ import NotFound404 from '../views/NotFound404.vue'
 
 import MovieListView from '@/views/MovieListView.vue'
 import MovieDetailView from '@/views/MovieDetailView.vue'
-import MovieNewView from '@/views/MovieNewView'
-import MovieEditView from '@/views/MovieEditView'
 
-import CommunityListView from '@/views/CommunityListView.vue'
-import CommunityDetailView from '@/views/CommunityDetailView.vue'
-import CommunityNewView from '@/views/CommunityNewView'
-import CommunityEditView from '@/views/CommunityEditView'
+import ArticleListView from '@/views/ArticleListView.vue'
+import ArticleDetailView from '@/views/ArticleDetailView.vue'
+import ArticleNewView from '@/views/ArticleNewView'
+import ArticleEditView from '@/views/ArticleEditView'
 
 
 Vue.use(VueRouter)
@@ -49,40 +47,30 @@ const routes = [
     component: MovieListView,
   },
   {
-    path: '/movies/new',
-    name: 'movieNew',
-    component: MovieNewView,
-  },
-  {
     path: '/movies/:moviePk',
     name: 'movie',
     component: MovieDetailView,
   },
-  {
-    path: 'movies/:moviePk/edit',
-    name: 'MovieEdit',
-    component: MovieEditView,
-  },
   // communities
   {
     path: '/communities',
-    name: 'communities',
-    component: CommunityListView,
+    name: 'articles',
+    component: ArticleListView,
   },
   {
     path: '/communities/new',
-    name: 'communityNew',
-    component: CommunityNewView,
+    name: 'articleNew',
+    component: ArticleNewView,
   },
   {
-    path: '/communities/:communityPk',
-    name: 'community',
-    component: CommunityDetailView,
+    path: '/communities/:articlePk',
+    name: 'article',
+    component: ArticleDetailView,
   },
   {
-    path: '/communities/:communityPk/edit',
-    name: 'communityEdit',
-    component: CommunityEditView,
+    path: '/communities/:articlePk/edit',
+    name: 'articleEdit',
+    component: ArticleEditView,
   },
   // etc
   {
