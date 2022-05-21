@@ -49,5 +49,8 @@ django-admin startproject django_front .
 pip install django==3.2.12
 pip install djangorestframework
 pip install django_extensions
+pip install django_cors_headers
+pip install django-allauth
+pip install dj-rest-auth
 ```
 
