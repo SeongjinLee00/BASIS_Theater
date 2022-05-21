@@ -1,9 +1,19 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from communities.models import Article
 
 User = get_user_model()
 
-class UserSerializers(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
+
+    class ArticleSerializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = Article
+            fields = ('pk', 'title')
+
+    articles = ArticleSerializer(many=True)
+
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('pk', 'username', 'email', 'articles')
