@@ -15,7 +15,7 @@ export default {
   getters: {
     articles: state => state.articles,
     article: state => state.article,
-    username: state=> state.article.user.username,
+    username: state => state.article.user?.username,
     isAuthor: (state, getters) => {
       return state.article.user?.username === getters.currentUser.username
     },
@@ -62,7 +62,9 @@ export default {
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_ARTICLE', res.data))
+        .then(res => {
+          commit('SET_ARTICLE', res.data)
+        })
         .catch(err => {
           console.error(err.response)
           if (err.response.status === 404) {

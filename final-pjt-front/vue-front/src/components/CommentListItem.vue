@@ -7,7 +7,7 @@
     <div v-if="!isEditing">{{ payload.content }}</div>
     <div class="text-secondary">{{comment.created_at.substr(0,10)}} {{comment.created_at.slice(11,16)}}</div>
     <span v-if="isEditing">
-      <input type="text" v-model="payload.content">
+      <input type="text" v-model="payload.content" required>
       <button @click="onUpdate">Update</button> |
       <button @click="switchIsEditing">Cancle</button>
     </span>

@@ -8,7 +8,7 @@
             {{ username }}
           </router-link>
         </div>
-        <div>{{article.created_at.substr(0,10)}} {{article.created_at.slice(11,16)}}</div>
+        <div>{{article.created_at.slice(0,10)}} {{article.created_at.slice(11,16)}}</div>
       </div>
       <hr>
 
@@ -26,7 +26,7 @@
 
       <div id="authorProfile">
         <router-link :to="{ name: 'profile', params: { username } }">
-          {{ username }}님의 게시글 더보기 >>
+          {{ article.user.username }}님의 게시글 더보기 >>
         </router-link>
       </div>
     </div>
@@ -63,9 +63,6 @@
     },
     computed: {
       ...mapGetters(['isAuthor', 'article', 'username']),
-      likeCount() {
-        return this.article.like_users?.length
-      },
     },
     methods: {
       ...mapActions([

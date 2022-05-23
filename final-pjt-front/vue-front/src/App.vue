@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <nav-bar></nav-bar>/
-    <hr />
+    <nav-bar></nav-bar>
     <router-view></router-view>
     <footer-bar></footer-bar>
   </div>
@@ -23,4 +22,5 @@
   }
 </script>
 
-<style></style>
+<style>
+</style>
