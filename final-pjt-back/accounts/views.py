@@ -75,4 +75,4 @@ def profile(request, username):
 
     serializer = ProfileSerializer(user)
 
-    return Response({serializer.data})
+    return Response(serializer.data)

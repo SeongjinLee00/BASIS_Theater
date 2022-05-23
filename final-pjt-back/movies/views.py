@@ -47,6 +47,7 @@ def movie_detail(request, movie_pk):
 def create_vote(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     user = request.user
+    print(request.data)
     serializer = VoteSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=user, movie=movie)

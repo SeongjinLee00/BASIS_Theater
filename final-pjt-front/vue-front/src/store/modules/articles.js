@@ -147,23 +147,6 @@ export default {
       }
     },
 
-    likeArticle({ commit, getters }, articlePk) {
-      /* 좋아요
-      POST: likeArticle URL(token)
-        성공하면
-          state.article 갱신
-        실패하면
-          에러 메시지 표시
-      */
-      axios({
-        url: drf.communities.likeArticle(articlePk),
-        method: 'post',
-        headers: getters.authHeader,
-      })
-        .then(res => commit('SET_ARTICLE', res.data))
-        .catch(err => console.error(err.response))
-    },
-
 		createComment({ commit, getters }, { articlePk, content }) {
       /* 댓글 생성
       POST: comments URL(댓글 입력 정보, token)

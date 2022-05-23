@@ -43,6 +43,7 @@ def update_or_delete_article(request, article_pk):
 
 @api_view(['POST'])
 def create_comment(request, article_pk):
+    print(request.data)
     article = Article.objects.get(pk=article_pk)
     user = request.user
     serializer = CommentSerializer(data=request.data)

@@ -69,7 +69,7 @@ export default {
         })
     },
     
-		createVote({ commit, getters }, { moviePk, content }) {
+		createVote({ commit, getters }, { moviePk, rate, content }) {
       /* 댓글 생성
       POST: reviews URL(댓글 입력 정보, token)
         성공하면
@@ -77,18 +77,19 @@ export default {
         실패하면
         에러 메시지 표시
       */
-     const vote = { content }
-
+     
       axios({
         url: drf.movies.votes(moviePk),
         method: 'post',
-        data: vote,
+        data: {rate, content},
         headers: getters.authHeader,
       })
         .then(res => {
           commit('SET_MOVIE_VOTES', res.data)
         })
-        .catch(err => console.error(err.response))
+        .catch(err => {
+          console.error(err.response)
+        })
     },
 
     updateVote({ commit, getters }, { moviePk, votePk, content }) {
@@ -135,80 +136,5 @@ export default {
             .catch(err => console.error(err.response))
           }
         },
-
-    // DEAD CODE : MOVIE CUD
-    // createMovie({ commit, getters }, movie) {
-    //   /* 게시글 생성
-    //   POST: movies URL (게시글 입력정보, token)
-    //     성공하면
-    //       응답으로 받은 게시글을 state.movie에 저장
-    //       movieDetailView 로 이동
-    //     실패하면
-    //       에러 메시지 표시
-    //   */
-      
-    //   axios({
-    //     url: drf.movies.movies(),
-    //     method: 'post',
-    //     data: movie,
-    //     headers: getters.authHeader,
-    //   })
-    //     .then(res => {
-    //       commit('SET_MOVIE', res.data)
-    //       router.push({
-    //         name: 'movie',
-    //         params: { moviePk: getters.movie.pk }
-    //       })
-    //     })
-    // },
-
-    // updateMovie({ commit, getters }, { pk, title, content}) {
-    //   /* 게시글 수정
-    //   PUT: movie URL (게시글 입력정보, token)
-    //     성공하면
-    //       응답으로 받은 게시글을 state.movie에 저장
-    //       movieDetailView 로 이동
-    //     실패하면
-    //       에러 메시지 표시
-    //   */
-    //   axios({
-    //     url: drf.movies.movie(pk),
-    //     method: 'put',
-    //     data: { title, content },
-    //     headers: getters.authHeader,
-    //   })
-    //     .then(res => {
-    //       commit('SET_MOVIE', res.data)
-    //       router.push({
-    //         name: 'movie',
-    //         params: { moviePk: getters.movie.pk }
-    //       })
-    //     })
-    // },
-
-    // deleteMovie({ commit, getters }, moviePk) {
-    //   /* 게시글 삭제
-    //   사용자가 확인을 받고
-    //     DELETE: movie URL (token)
-    //       성공하면
-    //         state.movie 비우기
-    //         AritcleListView로 이동
-    //       실패하면
-    //         에러 메시지 표시
-    //   */
-      
-    //   if (confirm('정말 삭제하시겠습니까?')) {
-    //     axios({
-    //       url: drf.movies.movie(moviePk),
-    //       method: 'delete',
-    //       headers: getters.authHeader,
-    //     })
-    //       .then(() => {
-    //         commit('SET_MOVIE', {})
-    //         router.push({ name: 'movies' })
-    //       })
-    //       .catch(err => console.error(err.response))
-    //   }
-    // },
   },
 }
