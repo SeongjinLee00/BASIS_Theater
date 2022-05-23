@@ -3,7 +3,9 @@
     <div class="container">
       <p class="fw-bold row mb-0">{{currentUser.username}}</p>
       <input class="row w-100" placeholder="댓글을 남겨보세요" type="text" id="comment" v-model="content" required>
-      <button class="row">Comment</button>
+      <a class="row justify-content-end"
+      onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">
+      Comment</a>
     </div>
   </form>
 </template>

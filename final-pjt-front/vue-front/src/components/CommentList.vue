@@ -1,7 +1,6 @@
 <template>
-
-  <div class="comment-list">
-    <h5 class="fw-bold">댓글</h5>
+  <div>
+    <h5 class="fw-bold mb-3">댓글목록</h5>
     <ul>
       <comment-list-item 
         v-for="comment in comments" 

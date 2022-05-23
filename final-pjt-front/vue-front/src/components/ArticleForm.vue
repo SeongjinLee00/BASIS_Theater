@@ -1,15 +1,15 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <div>
-      <label for="title">title: </label>
-      <input v-model="newArticle.title" type="text" id="title" />
+    <div class="mb-3">
+      <label for="title" class="form-label">글 제목</label>
+      <input v-model="newArticle.title" type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" required>
     </div>
-    <div>
-      <label for="content">content: </label>
-      <textarea v-model="newArticle.content" type="text" id="content"></textarea>
+    <div class="mb-3">
+      <label for="content" class="form-label">글 내용</label>
+      <textarea v-model="newArticle.content" class="form-control" id="content"  placeholder="내용을 입력해주세요" rows="3" required></textarea>
     </div>
-    <div>
-      <button>{{ action }}</button>
+    <div class="text-end">
+      <button class="btn btn-outline-secondary">{{ action }}</button>
     </div>
   </form>
 </template>

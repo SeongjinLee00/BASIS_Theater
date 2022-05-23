@@ -1,21 +1,28 @@
 <template>
   <li class="comment-list-item">
-    <hr>
     <router-link :to="{ name: 'profile', params: { username: comment.user.username } }" class="fw-bold text-black text-decoration-none">
       {{ comment.user.username }}
     </router-link>
-    <div v-if="!isEditing">{{ payload.content }}</div>
-    <div class="text-secondary">{{comment.created_at.substr(0,10)}} {{comment.created_at.slice(11,16)}}</div>
-    <span v-if="isEditing">
-      <input type="text" v-model="payload.content" required>
-      <button @click="onUpdate">Update</button> |
-      <button @click="switchIsEditing">Cancle</button>
-    </span>
-
-    <span v-if="currentUser.username === comment.user.username && !isEditing">
-      <button @click="switchIsEditing">Edit</button> |
-      <button @click="deleteComment(payload)">Delete</button>
-    </span>
+    <div v-if="!isEditing">
+      {{ payload.content }} <br>
+      {{comment.created_at.substr(0,10)}} {{comment.created_at.slice(11,16)}}
+    </div>
+    <div class="text-secondary">
+      <span v-if="isEditing">
+        <input type="text" v-model="payload.content" required><br>
+        <a @click="onUpdate">Update</a> |
+        <a @click="switchIsEditing">Cancle</a>
+      </span>
+      <span v-if="currentUser.username === comment.user.username && !isEditing">
+        <a @click="switchIsEditing"
+        onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">
+        Edit</a> |
+        <a @click="deleteComment(payload)"
+        onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">
+        Delete</a>
+      </span>
+    </div>
+    <hr>
   </li>
 </template>
 
@@ -53,4 +60,8 @@ export default {
 </script>
 
 <style>
+ul{
+   list-style:none;
+   padding-left:0px;
+   }
 </style>

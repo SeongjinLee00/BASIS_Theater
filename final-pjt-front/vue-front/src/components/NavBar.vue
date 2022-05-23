@@ -1,27 +1,30 @@
 <template>
-  <nav class="container">
+  <nav class="container my-3">
     <div class="d-flex align-items-center">
       <div class="flex-grow-1">
-        <router-link :to="{ name: 'movies' }">근본 영화</router-link>
+        <router-link :to="{ name: 'movies' }">
+          <img src="@/assets/근본영화 (2).png" alt="logo" style="width:80px">
+        </router-link>
       </div>
 
-      <div class="" v-if="!isLoggedIn">
-        <router-link :to="{ name: 'login' }">Login</router-link>
+      <div class="m-2" v-if="!isLoggedIn">
+        <router-link :to="{ name: 'login' }">로그인</router-link>
       </div>
-      <div class="" v-if="!isLoggedIn">
-        <router-link :to="{ name: 'signup' }">Signup</router-link>
+      <div class="m-2" v-if="!isLoggedIn">
+        <router-link :to="{ name: 'signup' }">회원가입</router-link>
       </div>
 
       <div class="m-2" v-if="isLoggedIn">
-        <router-link :to="{ name: 'articles' }">Community</router-link>
+        <router-link :to="{ name: 'articles' }">커뮤니티</router-link>
       </div>
       <div class="m-2" v-if="isLoggedIn">
         <router-link :to="{ name: 'profile', params: { username } }">
-          {{ currentUser.username }}'s page
+          <!-- {{ currentUser.username }}'s page -->
+          프로필
         </router-link>
       </div>
       <div class="m-2" v-if="isLoggedIn">
-        <router-link :to="{ name: 'logout' }">Logout</router-link>
+        <router-link :to="{ name: 'logout' }">로그아웃</router-link>
       </div>
     </div>
   </nav>
@@ -42,13 +45,9 @@
 </script>
 
 <style>
-@font-face {
-    font-family: 'Cafe24SsurroundAir';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-nav {
-  font-family: 'Cafe24SsurroundAir';
+a{
+  font-weight: bold;
+  color: black;
+  text-decoration-line: none;
 }
 </style>

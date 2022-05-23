@@ -1,14 +1,17 @@
 <template>
+<div>
+  <div class="my-5">
+    <img class="w-100" src="../assets/communityText.png" alt="#">
+  </div>
   <div class="container">
-    <img class="w-100" src="../assets/community.jpg" alt="#">
-    <div style="height: 1500px;"></div>
     <div class="" id="community">
-      <h1 class="">Community</h1>
-      <p class="text-end m-3" v-if="isLoggedIn">
-        <router-link :to="{ name: 'articleNew' }" class="text-secondary text-decoration-none">New</router-link>
-      </p>
       <br>
-      <p>총 {{articles.length}}개의 게시물이 있습니다.</p>
+      <div class="row">
+        <div class="col">총 {{articles.length}}개의 게시물이 있습니다.</div>
+        <div class="col text-end m-0" v-if="isLoggedIn">
+          <router-link :to="{ name: 'articleNew' }" class="text-secondary text-decoration-none">작성하기</router-link>
+        </div>
+      </div>
       <div class="container" v-for="article in articles" :key="article.pk">
         <hr>
         <div class="m-3">
@@ -29,6 +32,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -49,11 +53,4 @@
 </script>
 
 <style>
-/* .container {
-} */
-#community{
-  position: sticky;
-  height: 800px;
-  top: 0;
-}
   </style>

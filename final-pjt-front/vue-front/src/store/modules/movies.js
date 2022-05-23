@@ -58,7 +58,9 @@ export default {
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_MOVIE', res.data))
+        .then(res => {
+          commit('SET_MOVIE', res.data)
+        })
         .catch(err => {
           console.error(err.response)
           if (err.response.status === 404) {
