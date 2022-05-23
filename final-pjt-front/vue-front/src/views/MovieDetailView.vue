@@ -16,7 +16,7 @@
 
   export default {
     name: 'MovieDetail',
-    components: { CommentList, VoteForm },
+    components: { VoteForm },
     data() {
       return {
         moviePk: this.$route.params.moviePk,

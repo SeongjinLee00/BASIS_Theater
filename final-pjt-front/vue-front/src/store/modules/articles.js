@@ -15,6 +15,7 @@ export default {
   getters: {
     articles: state => state.articles,
     article: state => state.article,
+    username: state=> state.article.user.username,
     isAuthor: (state, getters) => {
       return state.article.user?.username === getters.currentUser.username
     },
@@ -37,7 +38,7 @@ export default {
           에러 메시지 표시
       */
       axios({
-        url: drf.articles.articles(),
+        url: drf.communities.articles(),
         method: 'get',
         headers: getters.authHeader,
       })
@@ -57,7 +58,7 @@ export default {
             NotFound404 로 이동
       */
       axios({
-        url: drf.articles.article(articlePk),
+        url: drf.communities.article(articlePk),
         method: 'get',
         headers: getters.authHeader,
       })
@@ -81,7 +82,7 @@ export default {
       */
       
       axios({
-        url: drf.articles.articles(),
+        url: drf.communities.articles(),
         method: 'post',
         data: article,
         headers: getters.authHeader,
@@ -95,7 +96,7 @@ export default {
         })
     },
 
-    updateArticle({ commit, getters }, { pk, title, content}) {
+    updateArticle({ commit, getters }, { articlePk, title, content}) {
       /* 게시글 수정
       PUT: article URL (게시글 입력정보, token)
         성공하면
@@ -105,7 +106,7 @@ export default {
           에러 메시지 표시
       */
       axios({
-        url: drf.articles.article(pk),
+        url: drf.communities.article(articlePk),
         method: 'put',
         data: { title, content },
         headers: getters.authHeader,
@@ -132,7 +133,7 @@ export default {
       
       if (confirm('정말 삭제하시겠습니까?')) {
         axios({
-          url: drf.articles.article(articlePk),
+          url: drf.communities.article(articlePk),
           method: 'delete',
           headers: getters.authHeader,
         })
@@ -142,6 +143,23 @@ export default {
           })
           .catch(err => console.error(err.response))
       }
+    },
+
+    likeArticle({ commit, getters }, articlePk) {
+      /* 좋아요
+      POST: likeArticle URL(token)
+        성공하면
+          state.article 갱신
+        실패하면
+          에러 메시지 표시
+      */
+      axios({
+        url: drf.communities.likeArticle(articlePk),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+        .then(res => commit('SET_ARTICLE', res.data))
+        .catch(err => console.error(err.response))
     },
 
 		createComment({ commit, getters }, { articlePk, content }) {
@@ -155,7 +173,7 @@ export default {
       const comment = { content }
 
       axios({
-        url: drf.articles.comments(articlePk),
+        url: drf.communities.comments(articlePk),
         method: 'post',
         data: comment,
         headers: getters.authHeader,
@@ -177,7 +195,7 @@ export default {
       const comment = { content }
 
       axios({
-        url: drf.articles.comment(articlePk, commentPk),
+        url: drf.communities.comment(articlePk, commentPk),
         method: 'put',
         data: comment,
         headers: getters.authHeader,
@@ -199,7 +217,7 @@ export default {
       */
         if (confirm('정말 삭제하시겠습니까?')) {
           axios({
-            url: drf.articles.comment(articlePk, commentPk),
+            url: drf.communities.comment(articlePk, commentPk),
             method: 'delete',
             data: {},
             headers: getters.authHeader,

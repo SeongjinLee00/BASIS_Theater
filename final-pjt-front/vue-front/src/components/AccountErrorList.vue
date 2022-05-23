@@ -1,14 +1,16 @@
 <template>
+<div class="container">
   <div class="account-error-list">
     <p v-for="(errors, field) in authError" :key="field">
       {{field}}
       <ul>
-        <li for="(error, idx) in errors" :key="idx">
+        <li v-for="(error, idx) in errors" :key="idx">
           {{error}}
         </li>
       </ul>
     </p>
   </div>
+</div>
 </template>
 
 <script>

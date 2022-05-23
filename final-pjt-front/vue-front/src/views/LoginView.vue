@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Login</h1>
     <!-- authError값이 있을 경우만 보여준다 -->
-    <account-error-list v-if="authError"></account-error-list>
+    <div class="alert alert-danger" v-if="authError" role="alert">
+      <account-error-list nt-error-list ></account-error-list>
+    </div>
 
     <form @submit.prevent="login(credentials)">
       <div>

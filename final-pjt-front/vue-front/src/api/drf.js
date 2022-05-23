@@ -5,8 +5,10 @@ const MOVIES = 'movies/'
 const VOTES = 'votes/'
 const COMMUNITIES = 'communities/'
 const COMMENTS = 'comments/'
+const FONTAWESOME_CDN = '<script src="https://kit.fontawesome.com/25a5039376.js" crossorigin="anonymous"></script>'
 
 export default {
+  FONTAWESOME_CDN,
   accounts: {
     login: () => HOST + ACCOUNTS + 'login/',
     logout: () => HOST + ACCOUNTS + 'logout/',
@@ -26,9 +28,9 @@ export default {
   communities: {
     articles : () => HOST + COMMUNITIES,
     article: articlePk => HOST + COMMUNITIES + `${articlePk}/`,
-    comments: articlePk => HOST + COMMUNITIES + `${articlePk}/` + COMMENTS + `${commentPk}`,
+    comments: articlePk => HOST + COMMUNITIES + `${articlePk}/` + COMMENTS,
     comment: (articlePk, commentPk) =>
-    HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
+    HOST + COMMUNITIES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
 
   }
 }

@@ -1,11 +1,11 @@
 <template>
   <li class="comment-list-item">
-    <router-link :to="{ name: 'profile', params: { username: comment.user.username } }">
+    <hr>
+    <router-link :to="{ name: 'profile', params: { username: comment.user.username } }" class="fw-bold text-black text-decoration-none">
       {{ comment.user.username }}
-    </router-link>: 
-    
-    <span v-if="!isEditing">{{ payload.content }}</span>
-
+    </router-link>
+    <div v-if="!isEditing">{{ payload.content }}</div>
+    <div class="text-secondary">{{comment.created_at.substr(0,10)}} {{comment.created_at.slice(11,16)}}</div>
     <span v-if="isEditing">
       <input type="text" v-model="payload.content">
       <button @click="onUpdate">Update</button> |
@@ -53,8 +53,4 @@ export default {
 </script>
 
 <style>
-.comment-list-item {
-  border: 1px solid green;
-
-}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>New Article</h1>
     <article-form :article="article" action="create"></article-form>
   </div>

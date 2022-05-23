@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 
 import LoginView from '@/views/LoginView.vue'
 import LogoutView from '@/views/LogoutView.vue'
@@ -112,25 +113,24 @@ Navigation Guard 설정
 */
 
 router.beforeEach((to, from, next) => {
-  // 이전 페이지에서 발생한 에러msg 삭제
+  // 이전 페이지에서 발생한 에러메시지 삭제
   store.commit('SET_AUTH_ERROR', null)
 
-  const { isLoggedIn } = store.gettters
-  // 인증이 필요없는 페이지들
-  const noAuthPages = [ 'login', 'signup' ]
+  const { isLoggedIn } = store.getters
+
+  const noAuthPages = ['login', 'signup']
 
   const isAuthRequired = !noAuthPages.includes(to.name)
 
-  if (isAuthRequired && !isLoggedIn ) {
-    alert('로그인이 필요합니다')
-    next({name: 'login'})
+  if (isAuthRequired && !isLoggedIn) {
+    alert('Require Login. Redirecting..')
+    next({ name: 'login' })
   } else {
     next()
   }
 
-  // 로그인 되어있는데 login이나 signup으로가면 main 페이지로 이동
-  if (!isAuthRequired && !isLoggedIn) {
-    next({name: 'movies'})
+  if (!isAuthRequired && isLoggedIn) {
+    next({ name: 'articles' })
   }
 })
 

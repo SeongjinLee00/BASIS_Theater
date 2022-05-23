@@ -1,8 +1,10 @@
 <template>
   <form @submit.prevent="onSubmit" class="comment-list-form">
-    <label for="comment">comment: </label>
-    <input type="text" id="comment" v-model="content" required>
-    <button>Comment</button>
+    <div class="container">
+      <p class="fw-bold row mb-0">{{currentUser.username}}</p>
+      <input class="row w-100" placeholder="댓글을 남겨보세요" type="text" id="comment" v-model="content" required>
+      <button class="row">Comment</button>
+    </div>
   </form>
 </template>
 
@@ -17,7 +19,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['article']),
+    ...mapGetters(['article','currentUser']),
   },
   methods: {
     ...mapActions(['createComment']),
@@ -31,8 +33,12 @@ export default {
 
 <style>
 .comment-list-form {
-  border: 1px solid black;
+  border: 1px solid gray;
   margin: 1rem;
   padding: 1rem;
+  border-radius: 5px;
+}
+#comment {
+  border: none;
 }
 </style>

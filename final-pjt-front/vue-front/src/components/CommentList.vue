@@ -1,12 +1,13 @@
 <template>
+
   <div class="comment-list">
-    
+    <h5 class="fw-bold">댓글</h5>
     <ul>
       <comment-list-item 
         v-for="comment in comments" 
         :comment="comment" 
         :key="comment.pk">
-      </comment-list-item>        
+      </comment-list-item>
     </ul>
 
     <comment-list-form></comment-list-form>
@@ -25,9 +26,3 @@ export default {
   props: { comments: Array },
 }
 </script>
-
-<style>
-.comment-list {
-  border: 1px solid blue;
-}
-</style>
