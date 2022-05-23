@@ -10,10 +10,10 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         class Meta:
             model = Article
-            fields = ('pk', 'title')
+            fields = ('pk', 'title','created_at')
 
     articles = ArticleSerializer(many=True)
 
     class Meta:
         model = User
-        fields = ('pk', 'username', 'email', 'articles')
+        fields = ('pk', 'username', 'email', 'articles',)
