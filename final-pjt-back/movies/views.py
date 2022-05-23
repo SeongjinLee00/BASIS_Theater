@@ -12,6 +12,7 @@ from pprint import pprint
 @api_view(['GET'])
 # 장르별로 10개나 20개정도 주는거어때?
 # 액션(1), 애니메이션(3), 코미디(4), 드라마(7), 공포(11), 로맨스(14)
+# [0:10]     [10:20]      [20:30]    [30:40]   [40:50]  [50:60]
 def movie_list(request):
     movies1 = Movie.objects.filter(genre_ids=1)
     serializer1 = MovieListSerializer(movies1, many=True)
@@ -25,7 +26,15 @@ def movie_list(request):
     serializer6 = MovieListSerializer(movies6, many=True)
     movies7 = Movie.objects.filter(genre_ids=14)
     serializer7 = MovieListSerializer(movies7, many=True)
-    return Response(serializer1.data)
+
+    return Response({ 
+        'actions' : random.sample(serializer1.data,10),
+        'animations' : random.sample(serializer2.data,10),
+        'comedys' : random.sample(serializer3.data,10),
+        'dramas' : random.sample(serializer5.data,10),
+        'horrors' : random.sample(serializer6.data,10),
+        'romances' : random.sample(serializer7.data,10),
+     })
     # return Response(random.sample(serializer1.data,10)+random.sample(serializer2.data,10)+random.sample(serializer3.data,10)+random.sample(serializer5.data,10)+random.sample(serializer6.data,10)+random.sample(serializer7.data,10))
 
 @api_view(['GET'])
