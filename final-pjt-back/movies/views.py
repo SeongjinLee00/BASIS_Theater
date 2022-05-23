@@ -5,13 +5,28 @@ from rest_framework.response import Response
 from .models import Movie, Vote
 from .serializers import MovieListSerializer, MovieDetailSerializer, VoteSerializer
 from rest_framework import status
+import random
+from pprint import pprint
 # Create your views here.
 
 @api_view(['GET'])
+# 장르별로 10개나 20개정도 주는거어때?
+# 액션(1), 애니메이션(3), 코미디(4), 드라마(7), 공포(11), 로맨스(14)
 def movie_list(request):
-    movies = Movie.objects.all()
-    serializer = MovieListSerializer(movies, many=True)
-    return Response(serializer.data)
+    movies1 = Movie.objects.filter(genre_ids=1)
+    serializer1 = MovieListSerializer(movies1, many=True)
+    movies2 = Movie.objects.filter(genre_ids=3)
+    serializer2 = MovieListSerializer(movies2, many=True)
+    movies3 = Movie.objects.filter(genre_ids=4)
+    serializer3 = MovieListSerializer(movies3, many=True)
+    movies5 = Movie.objects.filter(genre_ids=7)
+    serializer5 = MovieListSerializer(movies5, many=True)
+    movies6 = Movie.objects.filter(genre_ids=11)
+    serializer6 = MovieListSerializer(movies6, many=True)
+    movies7 = Movie.objects.filter(genre_ids=14)
+    serializer7 = MovieListSerializer(movies7, many=True)
+    return Response(serializer1.data)
+    # return Response(random.sample(serializer1.data,10)+random.sample(serializer2.data,10)+random.sample(serializer3.data,10)+random.sample(serializer5.data,10)+random.sample(serializer6.data,10)+random.sample(serializer7.data,10))
 
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
