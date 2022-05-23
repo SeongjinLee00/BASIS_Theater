@@ -32,7 +32,7 @@ from pprint import pprint
 movies=[]
 genre_dict={28:1, 12:2, 16:3, 35:4, 80:5, 99:6, 18:7, 10751:8, 14:9, 36:10, 27:11, 10402:12, 9648:13, 10749:14, 878:15, 10770:16, 53:17, 10752:18, 37:19}
 pk=1
-for i in range(1,2):
+for i in range(1,501):
     BASE_URL = 'https://api.themoviedb.org/3'
     path = '/movie/popular'
     params = {
@@ -40,13 +40,14 @@ for i in range(1,2):
         'language':'ko',
         'page': i
     }
-
+    if i%20==0:
+        print(i)
     response = requests.get(BASE_URL+path, params=params) # 영화를 불러와서
 
     data = response.json()
 
     for item in data['results']:
-        if item['vote_average']>7.5 and item['vote_count']>2000:
+        if item['vote_average']>7.5 and item['vote_count']>3000:
             tmp=dict()
             fields=dict()
             tmp['model'] = 'movies.movie'
