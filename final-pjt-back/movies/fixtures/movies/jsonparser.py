@@ -30,9 +30,9 @@ import requests
 from pprint import pprint
 
 movies=[]
-
+genre_dict={28:1, 12:2, 16:3, 35:4, 80:5, 99:6, 18:7, 10751:8, 14:9, 36:10, 27:11, 10402:12, 9648:13, 10749:14, 878:15, 10770:16, 53:17, 10752:18, 37:19}
 pk=1
-for i in range(1,501):
+for i in range(1,2):
     BASE_URL = 'https://api.themoviedb.org/3'
     path = '/movie/popular'
     params = {
@@ -54,10 +54,16 @@ for i in range(1,501):
             pk+=1
             fields['backdrop_path'] = item['backdrop_path']
             fields['poster_path'] = item['poster_path']
-            fields['genre_ids'] = item['genre_ids']
+            fields['genre_ids'] = []
+            for num in item['genre_ids']:
+                fields['genre_ids'].append(genre_dict[num])
             fields['overview'] = item['overview']
             fields['title'] = item['title']
+            fields['release_date'] = item['release_date']
             tmp['fields'] = fields
             movies.append(tmp)
 
-pprint(movies)
+import json
+
+with open('movies.json', 'w', encoding='utf-8') as make_file:
+    json.dump(movies, make_file, ensure_ascii=False, indent="\t")

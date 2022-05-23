@@ -8,6 +8,8 @@ from rest_framework import status
 # Create your views here.
 
 @api_view(['GET'])
+# 장르별로 10개나 20개정도 주는거어때?
+# 액션, 애니메이션, 코미디, 다큐멘터리, 드라마, 공포, 로맨스
 def movie_list(request):
     movies = Movie.objects.all()
     serializer = MovieListSerializer(movies, many=True)
