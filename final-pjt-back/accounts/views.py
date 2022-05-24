@@ -77,11 +77,11 @@ def profile(request, username):
 
     return Response({
         'profile' : serializer.data,
-        'overall_power' : overall_cnt/overall_len*100,
-        'action_power' : action_cnt/action_len*100,
-        'animation_power' : animation_cnt/animation_len*100,
-        'comedy_power' : comedy_cnt/comedy_len*100,
-        'drama_power' : drama_cnt/drama_len*100,
-        'horror_power' : horror_cnt/horror_len*100,
-        'romance_power' : romance_cnt/romance_len*100,
+        'overall_power' : round(overall_cnt/overall_len*100,2),
+        'action_power' : round(action_cnt/action_len*100,2),
+        'animation_power' : round(animation_cnt/animation_len*100,2),
+        'comedy_power' : round(comedy_cnt/comedy_len*100,2),
+        'drama_power' : round(drama_cnt/drama_len*100,2),
+        'horror_power' : round(horror_cnt/horror_len*100,2),
+        'romance_power' : round(romance_cnt/romance_len*100,2),
         })

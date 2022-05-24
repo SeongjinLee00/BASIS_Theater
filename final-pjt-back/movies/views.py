@@ -48,12 +48,28 @@ def movie_detail(request, movie_pk):
 def create_vote(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     user = request.user
-    print(request.data)
-    serializer = VoteSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(user=user, movie=movie)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    before_vote = Vote.objects.filter(movie_id=movie_pk, user_id=request.user.pk)
 
+    if request.data['rate']==0: # 0점 보내면 삭제
+        if len(before_vote)>=1:
+            before_vote.delete()
+        else:
+            pass
+        return Response({'message' : 'record has deleted'})
+
+    elif len(before_vote)==0: # 0점 안보냈을 때, 기존에 없으면 create
+        serializer = VoteSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=user, movie=movie)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    elif len(before_vote)>=1: # 0점 안보냈을 때, 기존에 있으면 delete 후 create
+        before_vote.delete()
+        serializer = VoteSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=user, movie=movie)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
 @api_view(['DELETE', 'PUT'])
 def update_or_delete_vote(request, movie_pk, vote_pk):
     vote = Vote.objects.get(pk=vote_pk)
