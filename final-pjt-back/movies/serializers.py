@@ -46,7 +46,8 @@ class MovieDetailSerializer(serializers.ModelSerializer):
         return average
 
 class VoteSerializer(serializers.ModelSerializer):
-
+    
+    vote_set = VoteSerializer(many=True, read_only=True)
     class Meta:
         model = Vote
         fields = '__all__'

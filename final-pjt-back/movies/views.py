@@ -55,20 +55,39 @@ def create_vote(request, movie_pk):
             before_vote.delete()
         else:
             pass
-        return Response({'message' : 'record has deleted'})
+        vote_queryset=Vote.objects.filter(movie_id=movie_pk)
+        vote_list=[]
+
+        for item in vote_queryset:
+            vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id})
+        return Response(vote_list, status=status.HTTP_204_NO_CONTENT)
 
     elif len(before_vote)==0: # 0점 안보냈을 때, 기존에 없으면 create
         serializer = VoteSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=user, movie=movie)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+            vote_queryset=Vote.objects.filter(movie_id=movie_pk)
+            vote_list=[]
+
+            for item in vote_queryset:
+                vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id})
+
+            return Response(vote_list, status=status.HTTP_201_CREATED)
     
     elif len(before_vote)>=1: # 0점 안보냈을 때, 기존에 있으면 delete 후 create
         before_vote.delete()
         serializer = VoteSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=user, movie=movie)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            
+            vote_queryset=Vote.objects.filter(movie_id=movie_pk)
+            vote_list=[]
+
+            for item in vote_queryset:
+                vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id})
+
+            return Response(vote_list, status=status.HTTP_201_CREATED)
     
 @api_view(['DELETE', 'PUT'])
 def update_or_delete_vote(request, movie_pk, vote_pk):

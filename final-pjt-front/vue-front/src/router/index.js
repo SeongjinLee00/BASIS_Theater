@@ -136,7 +136,7 @@ router.beforeEach((to, from, next) => {
   }
 
   if (!isAuthRequired && isLoggedIn) {
-    next({ name: 'articles' })
+    next({ name: 'movies' })
   }
 })
 
