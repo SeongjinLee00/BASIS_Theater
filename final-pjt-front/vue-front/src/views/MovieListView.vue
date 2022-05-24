@@ -11,7 +11,7 @@
 
   <div class="container">
     <div v-for="(genre, name) in movies" :key="genre">
-      <h1 class="mt-5">{{name}} TOP 10</h1>
+      <h1 class="mt-5">{{name}}</h1>
       <genre-movies :movieList="genre"></genre-movies>
         
     </div>

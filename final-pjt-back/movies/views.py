@@ -29,12 +29,12 @@ def movie_list(request):
     serializer7 = MovieListSerializer(movies7, many=True)
 
     return Response({ 
-        'actions' : random.sample(serializer1.data,10),
-        'animations' : random.sample(serializer2.data,10),
-        'comedys' : random.sample(serializer3.data,10),
-        'dramas' : random.sample(serializer5.data,10),
-        'horrors' : random.sample(serializer6.data,10),
-        'romances' : random.sample(serializer7.data,10),
+        'actions' : random.sample(serializer1.data,12),
+        'animations' : random.sample(serializer2.data,12),
+        'comedys' : random.sample(serializer3.data,12),
+        'dramas' : random.sample(serializer5.data,12),
+        'horrors' : random.sample(serializer6.data,12),
+        'romances' : random.sample(serializer7.data,12),
      })
     # return Response(random.sample(serializer1.data,10)+random.sample(serializer2.data,10)+random.sample(serializer3.data,10)+random.sample(serializer5.data,10)+random.sample(serializer6.data,10)+random.sample(serializer7.data,10))
 
