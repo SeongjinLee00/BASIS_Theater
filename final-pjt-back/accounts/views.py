@@ -75,9 +75,6 @@ def profile(request, username):
 
     serializer = ProfileSerializer(user)
 
-<<<<<<< HEAD
-    return Response(serializer.data)
-=======
     return Response({
         'profile' : serializer.data,
         'overall_power' : overall_cnt/overall_len*100,
@@ -88,4 +85,3 @@ def profile(request, username):
         'horror_power' : horror_cnt/horror_len*100,
         'romance_power' : romance_cnt/romance_len*100,
         })
->>>>>>> fa12d30421f63e6fac72017f5a4c3591ebe6419d
