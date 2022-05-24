@@ -24,11 +24,8 @@
     </div>
 
     <div id="votes" class="container">
-    <vote-form :movie="movie"></vote-form>
       <h1>다른 유저들의 평가</h1>
-      <div v-for="vote in movie.vote_set" :key="vote.id">
-        <vote-list-item :vote="vote" ></vote-list-item>
-      </div>
+        <vote-list :votes="movie.vote_set" :movie="movie" ></vote-list>
     </div>
 
   </div>
@@ -37,12 +34,11 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import VoteForm  from '../components/VoteForm.vue'
-  import VoteListItem from '../components/VoteListItem.vue'
+  import VoteList from '../components/VoteList.vue'
 
   export default {
     name: 'MovieDetail',
-    components: { VoteForm, VoteListItem },
+    components: { VoteList },
     computed: {
       ...mapGetters(['movie', 'poster']),
     },

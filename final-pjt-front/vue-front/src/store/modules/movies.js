@@ -10,21 +10,28 @@ export default {
   state: {
     movies: [],
     movie: {},
+    rate: 0,
   },
 
   getters: {
     movies: state => state.movies,
     movie: state => state.movie,
     ismovie: state => !_.isEmpty(state.movie),
+    rate: state => state.rate
   },
 
   mutations: {
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie = movie,
-    SET_MOVIE_VOTES: (state, votes) => (state.movie.votes = votes),
+    SET_MOVIE_VOTES: (state, votes) => (state.movie.vote_set = votes),
+    SET_MY_RATE: (state, rate) => (state.rate = rate),
   },
 
   actions: {
+    setVote({commit, getters}, rate) {
+      commit('SET_MY_RATE', rate)
+      return getters.rate
+    },
     fetchMovies({ commit, getters }) {
       /* 게시글 목록 받아오기
       GET: movies URL (token)

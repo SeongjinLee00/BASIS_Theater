@@ -1,5 +1,6 @@
 <template>
 <div>
+  {{this.myrate}}
   <form @submit.prevent="onSubmit" class="vote-list-form">
     <span @input.prevent="startRate" class="star">
     ★★★★★
@@ -14,7 +15,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -29,16 +29,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['currentUser']),
+    ...mapGetters(['currentUser','myrate']),
   },
   methods: {
     ...mapActions(['createVote','fetchMovie']),
     getMovie() {
-      if ( _.isEmpty(this.movie)) {
-        this.moviePk = this.$attrs.movie.id
-      } else {
-        this.moviePk = this.movie.id
-      }
+      this.moviePk = this.$route.params.moviePk;
     },
     onSubmit() {
         this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
