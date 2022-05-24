@@ -6,7 +6,6 @@
         ★★★★★
       <span :style="{ width : vote.rate*10 + '%' }" >★★★★★</span></span>
       {{vote.content}}
-      {{ payload.rate}}
       {{ payload.content }} <br>
     </div>
     <div class="text-secondary">
@@ -14,10 +13,10 @@
         <span @input.prevent="starRate" class="star">
         ★★★★★
         <span :style="{ width : starValue }" >★★★★★</span>
-        <input type="range" name="rate"  id="rate"  v-model="rate" value="1" step="1" min="0" max="10">
+        <input type="range" name="rate"  id="rate"  v-model="rate" step="1" min="0" max="10">
         </span><br>
         <label for="content">content: </label>
-        <input type="text" id="content" v-model="content">
+        <input type="text" id="content" placeholder="별점이 없으면 평가가 지워집니다." v-model="content">
         <a @click="onUpdate"
         onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">Update</a> |
         <a @click="switchIsEditing"
@@ -51,7 +50,6 @@ export default {
       isEditing: false,
       myVote: 0,
       starValue: '',
-      v: 0,
       
       payload: { 
         moviePk: this.vote.movie,
@@ -62,7 +60,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['currentUser']),
+    ...mapGetters(['currentUser','movie']),
   },
   methods: {
     ...mapActions(['createVote','deleteVote','setVote',]),
@@ -70,13 +68,14 @@ export default {
       this.isEditing = !this.isEditing
     },
     onUpdate() {
-        this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content,})
-        this.isEditing = false
+      this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content,})
+      this.isEditing = false
+      this.content= ''
+      this.rate= ''
     },
     isVote() {
       if ( this.currentUser.pk === this.vote.user) {
         this.myVote = this.vote.rate
-        this.v = this.setVote(this.myVote)
       }
     },
     starRate() {

@@ -1,15 +1,13 @@
 <template>
 <div>
-  {{this.myrate}}
   <form @submit.prevent="onSubmit" class="vote-list-form">
-    <span @input.prevent="startRate" class="star">
+    <span @input.prevent="startRate" class="star" id="starSpan">
     ★★★★★
     <span :style="{ width : starValue }" >★★★★★</span>
     <input type="range" name="rate"  id="rate"  v-model="rate" value="1" step="1" min="0" max="10">
-    </span><br>
-    <label for="content">content: </label>
-    <input type="text" id="content" v-model="content">
-    <button>vote</button>
+    </span>
+    <input class="mb-3" type="text" id="content" placeholder="별점이 없으면 평가가 지워집니다." v-model="content">
+    <button class="btn btn-warning mx-3 mb-1">vote</button>
   </form>
 </div>
 </template>
@@ -25,11 +23,10 @@ export default {
       content: '',
       moviePk: 0,
       starValue: 0,
-      movie: '',
     }
   },
   computed: {
-    ...mapGetters(['currentUser','myrate']),
+    ...mapGetters(['currentUser','myrate','movie']),
   },
   methods: {
     ...mapActions(['createVote','fetchMovie']),
@@ -38,6 +35,7 @@ export default {
     },
     onSubmit() {
         this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
+        this.rate = 0
         this.content = ''
     },
     startRate() {
@@ -46,7 +44,6 @@ export default {
   },
   created() {
     this.getMovie()
-    this.movie = this.fetchMovie(this.moviePk) 
   },
 }
 </script>
@@ -79,5 +76,8 @@ export default {
     color: red;
     overflow: hidden;
     pointer-events: none;
+  }
+  #content {
+    width: 300px;
   }
 </style>

@@ -11,6 +11,7 @@ export default {
     movies: [],
     movie: {},
     rate: 0,
+    recommend : {}
   },
 
   getters: {

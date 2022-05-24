@@ -43,9 +43,7 @@ export default {
     ...mapActions(['fetchRecommend'])
   },
   created() {
-    setTimeout(() => {
       this.fetchRecommend()
-    }, 300)
   },
 }
 </script>

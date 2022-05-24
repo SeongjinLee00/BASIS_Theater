@@ -24,7 +24,7 @@
     </div>
 
     <div id="votes" class="container">
-      <h1>다른 유저들의 평가</h1>
+      <h1>유저들의 평가</h1>
         <vote-list :votes="movie.vote_set" :movie="movie" ></vote-list>
     </div>
 
