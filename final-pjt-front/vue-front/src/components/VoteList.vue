@@ -2,11 +2,13 @@
   <div>
     <h5 class="fw-bold mb-3">평점 목록</h5>
     <ul>
-      <vote-list-item :vote="vote">
-      </vote-list-item>
+      <div v-for="vote in votes" :key="vote.pk">
+        <vote-list-item :vote="vote">
+        </vote-list-item>
+      </div>
+      <vote-form></vote-form>
     </ul>
 
-    <comment-list-form></comment-list-form>
   </div>
 </template>
 
@@ -17,7 +19,7 @@ import VoteForm from '@/components/VoteForm'
 
 
 export default {
-  name: 'CommentList',
+  name: 'VoteList',
   components: { VoteForm, VoteListItem },
   props: { votes: Array },
 }
