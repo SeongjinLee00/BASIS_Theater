@@ -36,11 +36,7 @@ export default {
       }
     },
     onSubmit() {
-      if ( this.currentUser.pk in this.$attrs.movie.vote_user) {
-        // this.updateVote({ moviePk: this.moviePk, votePk: , rate: this.rate, content: this.content,})
-      } else {
         this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
-      }
     },
     startRate() {
       this.starValue = this.rate*10 + '%'

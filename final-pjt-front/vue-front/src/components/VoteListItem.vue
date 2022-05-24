@@ -11,7 +11,7 @@
     </div>
     <div class="text-secondary">
       <span v-if="isEditing">
-        <span @input.prevent="startRate" class="star">
+        <span @input.prevent="starRate" class="star">
         ★★★★★
         <span :style="{ width : starValue }" >★★★★★</span>
         <input type="range" name="rate"  id="rate"  v-model="rate" value="1" step="1" min="0" max="10" required>
@@ -22,7 +22,7 @@
         <a @click="onUpdate">Update</a> |
         <a @click="switchIsEditing">Cancle</a>
       </span>
-      <span v-if="currentUser.username === vote.user && !isEditing">
+      <span v-if="currentUser.pk === vote.user && !isEditing">
         <a @click="switchIsEditing"
         onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">
         Edit</a> |
@@ -63,8 +63,7 @@ export default {
       this.isEditing = !this.isEditing
     },
     onUpdate() {
-      this.updateVote(this.payload)
-      this.isEditing = false
+        this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
     },
     isVote() {
       if ( this.currentUser.pk === this.votes.user) {

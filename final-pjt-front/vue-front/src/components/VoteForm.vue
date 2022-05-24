@@ -1,14 +1,16 @@
 <template>
-  <form @submit.prevent="onSubmit" v-if="isVotes" class="vote-list-form">
+<div>
+  <form @submit.prevent="onSubmit" class="vote-list-form">
     <span @input.prevent="startRate" class="star">
     ★★★★★
     <span :style="{ width : starValue }" >★★★★★</span>
-    <input type="range" name="rate"  id="rate"  v-model="rate" value="1" step="1" min="0" max="10" required>
+    <input type="range" name="rate"  id="rate"  v-model="rate" value="1" step="1" min="0" max="10">
     </span><br>
     <label for="content">content: </label>
     <input type="text" id="content" v-model="content">
     <button>vote</button>
   </form>
+</div>
 </template>
 
 <script>
@@ -23,14 +25,14 @@ export default {
       content: '',
       moviePk: 0,
       starValue: 0,
-      isVotes: false,
+      movie: '',
     }
   },
   computed: {
-    ...mapGetters(['movie','currentUser']),
+    ...mapGetters(['currentUser']),
   },
   methods: {
-    ...mapActions(['createVote']),
+    ...mapActions(['createVote','fetchMovie']),
     getMovie() {
       if ( _.isEmpty(this.movie)) {
         this.moviePk = this.$attrs.movie.id
@@ -39,24 +41,17 @@ export default {
       }
     },
     onSubmit() {
-      if (this.rate) {
         this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
-      }
+        this.content = ''
     },
     startRate() {
       this.starValue = this.rate*10 + '%'
     },
-    isVote() {
-      if ( this.currentUser.pk === this.votes.user) {
-        return this.isVotes
-      } else{
-        return !this.isVotes
-      }
-    }
   },
   created() {
     this.getMovie()
-  }
+    this.movie = this.fetchMovie(this.moviePk) 
+  },
 }
 </script>
 

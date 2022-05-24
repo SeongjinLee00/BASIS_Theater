@@ -1,13 +1,10 @@
 <template>
 <div class="container">
   <div class="genre-movies">
-    
   <div class="container py-5">
-    <div class="row">
-      <div class="col-4" v-for="movie in movieList" :key="movie.pk">
-        <genre-movie :movie="movie"></genre-movie>
+      <div class="row">
+      <genre-movie class="col-4" v-for="movie in movieList" :key="movie.pk" :movie="movie"></genre-movie>
       </div>
-    </div>
   </div>
   </div>
 
@@ -39,9 +36,5 @@ export default {
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
-}
-.box {
-  border-radius: 10px;
-  overflow: hidden;
 }
 </style>
