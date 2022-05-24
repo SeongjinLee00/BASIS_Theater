@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="my-5">
-      <h1>{{ profile.username }}님, 반가워요!</h1>
-      <p class="text-secondary">평가영화 {{ votesCount }} | 작성글 {{ articlesCount }}</p>
+      <h1>{{ profile.profile.username }}님, 반가워요!</h1>
+      <p class="text-secondary">평가영화 {{ profile.votesCount }} | 작성글 {{ profile.articles }}</p>
 
       <div class="mt-3">
         <!-- api 자료 이름 확인 후 변경 예정 -->

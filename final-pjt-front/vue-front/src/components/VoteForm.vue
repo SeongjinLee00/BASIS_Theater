@@ -1,7 +1,10 @@
 <template>
-  <form @submit.prevent="onSubmit" class="vote-list-form">
-    <label for="rate">vote: </label>
-    <input type="range" name="rate" min="0" max="10" id="rate" v-model="rate" required>
+  <form @click.prevent="onSubmit" class="vote-list-form">
+    <span @input.prevent="startRate" class="star">
+    ★★★★★
+    <span :style="{ width : starValue }" >★★★★★</span>
+    <input type="range" name="rate"  id="rate"  v-model="rate" value="1" step="1" min="0" max="10" required>
+    </span><br>
     <label for="content">content: </label>
     <input type="text" id="content" v-model="content">
     <button>vote</button>
@@ -19,6 +22,7 @@ export default {
       rate : 0,
       content: '',
       moviePk: 0,
+      starValue: 0,
     }
   },
   computed: {
@@ -32,11 +36,13 @@ export default {
       } else {
         this.moviePk = this.movie.id
       }
-
     },
     onSubmit() {
       this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
-    }
+    },
+    startRate() {
+      this.starValue = this.rate*10 + '%'
+    },
   },
   created() {
     this.getMovie()
@@ -50,4 +56,27 @@ export default {
   margin: 1rem;
   padding: 1rem;
 }
+  .star {
+    position: relative;
+    font-size: 2rem;
+    color: #ddd;
+  }
+  
+  .star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: red;
+    overflow: hidden;
+    pointer-events: none;
+  }
 </style>
