@@ -2,7 +2,6 @@
   <div>
     <h5 class="fw-bold mb-3">평점 목록</h5>
     <ul>
-      <vote-form></vote-form>
       <vote-list-item :vote="vote">
       </vote-list-item>
     </ul>

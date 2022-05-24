@@ -24,7 +24,7 @@
     </div>
 
     <div id="votes" class="container">
-    <vote-form></vote-form>
+    <vote-form :movie="movie"></vote-form>
       <h1>다른 유저들의 평가</h1>
       <div v-for="vote in movie.vote_set" :key="vote.id">
         <vote-list-item :vote="vote" ></vote-list-item>
