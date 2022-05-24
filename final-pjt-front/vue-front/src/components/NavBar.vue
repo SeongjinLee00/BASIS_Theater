@@ -15,6 +15,9 @@
       </div>
 
       <div class="m-2" v-if="isLoggedIn">
+        <router-link :to="{ name: 'recommendations' }">추천영화</router-link>
+      </div>
+      <div class="m-2" v-if="isLoggedIn">
         <router-link :to="{ name: 'articles' }">커뮤니티</router-link>
       </div>
       <div class="m-2" v-if="isLoggedIn">
