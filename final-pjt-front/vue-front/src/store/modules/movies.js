@@ -92,7 +92,7 @@ export default {
         })
     },
 
-    updateVote({ commit, getters }, { moviePk, votePk, content }) {
+    updateVote({ commit, getters }, { moviePk, votePk, rate, content }) {
       /* 댓글 수정
       PUT: vote URL(댓글 입력 정보, token)
         성공하면
@@ -100,12 +100,11 @@ export default {
         실패하면
           에러 메시지 표시
       */
-      const vote = { content }
 
       axios({
         url: drf.movies.vote(moviePk, votePk),
         method: 'put',
-        data: vote,
+        data: {rate, content},
         headers: getters.authHeader,
       })
         .then(res => {

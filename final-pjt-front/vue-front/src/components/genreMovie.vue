@@ -6,17 +6,17 @@
         :to="{ name: 'movie', params: {moviePk: movie.id} }">
         <img id="poster" class="w-100" :src="poster+movie.poster_path" :alt="movie.title">
       </router-link>
-      <vote-form :movie="movie"></vote-form>
+      <vote-main-form :movie="movie"></vote-main-form>
       
     </div>
   </div>
 </template>
 
 <script>
-import VoteForm from './VoteForm.vue'
+import VoteMainForm from './VoteMainForm.vue'
 export default {
   name: 'genreMovie',
-  components: {VoteForm},
+  components: { VoteMainForm },
   props: { movie : Object },
   data() {
     return { 

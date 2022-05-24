@@ -1,13 +1,10 @@
 <template>
-  <form @submit.prevent="onSubmit" v-if="isVotes" class="vote-list-form">
-    <span @input.prevent="startRate" class="star">
+  <form @click.prevent="onSubmit" class="vote-list-form">
+    <span @input.prevent="startRate" v-if="isVotes" class="star">
     ★★★★★
     <span :style="{ width : starValue }" >★★★★★</span>
     <input type="range" name="rate"  id="rate"  v-model="rate" value="1" step="1" min="0" max="10" required>
     </span><br>
-    <label for="content">content: </label>
-    <input type="text" id="content" v-model="content">
-    <button>vote</button>
   </form>
 </template>
 
@@ -23,7 +20,7 @@ export default {
       content: '',
       moviePk: 0,
       starValue: 0,
-      isVotes: false,
+      isVotes: true,
     }
   },
   computed: {
@@ -39,15 +36,13 @@ export default {
       }
     },
     onSubmit() {
-      if (this.rate) {
-        this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
-      }
+      this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
     },
     startRate() {
       this.starValue = this.rate*10 + '%'
     },
     isVote() {
-      if ( this.currentUser.pk === this.votes.user) {
+      if ( this.currentUser.pk === this.movie.votes?.user) {
         return this.isVotes
       } else{
         return !this.isVotes
@@ -56,6 +51,7 @@ export default {
   },
   created() {
     this.getMovie()
+    this.isVote()
   }
 }
 </script>
