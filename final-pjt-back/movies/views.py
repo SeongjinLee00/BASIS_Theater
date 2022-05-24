@@ -8,6 +8,7 @@ from rest_framework import status
 import random
 from pprint import pprint
 from django.db.models import Q
+import time
 # Create your views here.
 
 @api_view(['GET'])
@@ -49,8 +50,8 @@ def create_vote(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     user = request.user
     before_vote = Vote.objects.filter(movie_id=movie_pk, user_id=request.user.pk)
-
-    if request.data['rate']==0: # 0점 보내면 삭제
+    print(request.data['rate'])
+    if request.data['rate']==0 or request.data['rate']=='0': # 0점 보내면 삭제
         if len(before_vote)>=1:
             before_vote.delete()
         else:
@@ -59,8 +60,10 @@ def create_vote(request, movie_pk):
         vote_list=[]
 
         for item in vote_queryset:
+            if item.user_id==request.user.id:
+                continue
             vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id})
-        return Response(vote_list, status=status.HTTP_204_NO_CONTENT)
+        return Response(vote_list, status=status.HTTP_200_OK)
 
     elif len(before_vote)==0: # 0점 안보냈을 때, 기존에 없으면 create
         serializer = VoteSerializer(data=request.data)
@@ -236,11 +239,11 @@ def recommendations(request):
 
     power_dict['overall_power'] = overall_cnt/overall_len*100
     if max(list(power_dict.values()))<5:
-        return Response({
-            'recommended_movies' : [],
-            'powers' : power_dict,
-            'message' : '평가를 좀 더 해주셔야 영화를 추천드릴 수 있어요ㅠ'
-            })
+        # return Response({
+        #     'recommended_movies' : [],
+        #     'powers' : power_dict,
+        message = '평가를 좀 더 해주셔야 더 영화를 잘 추천드릴 수 있어요ㅠ'
+            # })
     return Response({
         'recommended_movies' : serializer.data,
         'powers' : power_dict,

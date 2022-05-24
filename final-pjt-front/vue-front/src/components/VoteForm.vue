@@ -3,9 +3,10 @@
   <form @submit.prevent="onSubmit" class="vote-list-form">
     <span @input.prevent="startRate" class="star" id="starSpan">
     ★★★★★
-    <span :style="{ width : starValue }" >★★★★★</span>
-    <input type="range" name="rate"  id="rate"  v-model="rate" value="1" step="1" min="0" max="10">
+    <span :style="{ width : starValue }">★★★★★</span>
+    <input type="range" name="rate" id="rate" class="my-2" v-model="rate" value="1" step="1" min="0" max="10">
     </span>
+    <br>
     <input class="mb-3" type="text" id="content" placeholder="별점이 없으면 평가가 지워집니다." v-model="content">
     <button class="btn btn-warning mx-3 mb-1">vote</button>
   </form>

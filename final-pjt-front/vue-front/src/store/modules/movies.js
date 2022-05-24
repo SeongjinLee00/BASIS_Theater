@@ -109,6 +109,7 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
+          console.log(res.data)
           commit('SET_MOVIE_VOTES', res.data)
         })
         .catch(err => {
