@@ -4,7 +4,7 @@
     
   <div class="container py-5">
     <div class="row">
-      <div class="col-4" v-for="movie in movieList" :key="movie.pk">
+      <div class="col-3" v-for="movie in movieList" :key="movie.pk">
         <genre-movie :movie="movie"></genre-movie>
       </div>
     </div>
