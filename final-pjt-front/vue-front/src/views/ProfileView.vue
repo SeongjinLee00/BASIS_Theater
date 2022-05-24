@@ -3,7 +3,7 @@
     <div class="my-5">
       <h1 class="mb-5">{{ profile.profile.username }}님, 반가워요!</h1>
       <!-- <p class="text-secondary">평가영화 {{ profile.votesCount }} | 작성글 {{ profile.articles }}</p> -->
-      <p class="mt-4 mb-1">근본력 : {{profile.overall_power}}%</p>
+      <p class="mt-4 mb-1">근본력 : {{ profile.overall_power}}%</p>
       <div class="progress">
         <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width : profile.overall_power+'%'}" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
       </div>

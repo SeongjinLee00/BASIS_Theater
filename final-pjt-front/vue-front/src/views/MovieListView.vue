@@ -3,7 +3,7 @@
   <!--main -->
   <div id="main" class="my-5" style="text-align:center;">
     <div class="">
-      <img class="img-fluid text-center" src="@/assets/mainimg.png" alt="mainImg">
+      <img class="img-fluid text-center" src="@/assets/mainImg.png" alt="mainImg">
     </div>
   </div>
 

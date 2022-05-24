@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
       <div class="flex-grow-1">
         <router-link :to="{ name: 'movies' }">
-          <img src="@/assets/근본영화 (2).png" alt="logo" style="width:80px">
+          <img src="@/assets/근본극장.png" alt="logo" style="width:80px">
         </router-link>
       </div>
 
