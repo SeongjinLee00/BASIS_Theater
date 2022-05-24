@@ -17,7 +17,8 @@ export default {
     movies: state => state.movies,
     movie: state => state.movie,
     ismovie: state => !_.isEmpty(state.movie),
-    rate: state => state.rate
+    rate: state => state.rate,
+    recommend: state => state.recommend,
   },
 
   mutations: {
@@ -25,13 +26,28 @@ export default {
     SET_MOVIE: (state, movie) => state.movie = movie,
     SET_MOVIE_VOTES: (state, votes) => (state.movie.vote_set = votes),
     SET_MY_RATE: (state, rate) => (state.rate = rate),
+    SET_RECOMMEND: (state, recommend) => state.recommend = recommend,
   },
 
   actions: {
+    async fetchRecommend({commit, getters}) {
+      await axios({ 
+        url: drf.movies.recommendation(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+      .then((res) => {
+        commit('SET_RECOMMEND', res.data)
+        router.push({ name: 'recommendations' }).catch(err=>err);
+      })
+      .catch(err => console.error(err.response))
+    },
+
     setVote({commit, getters}, rate) {
       commit('SET_MY_RATE', rate)
       return getters.rate
     },
+
     fetchMovies({ commit, getters }) {
       /* 게시글 목록 받아오기
       GET: movies URL (token)

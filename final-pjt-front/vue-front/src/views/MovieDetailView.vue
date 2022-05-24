@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="main" class="my-5" style="text-align:center;">
-    <div id="movieBox" class="">
+    <div id="movieBox">
       <div id="backImg" class="position-absolute mh-100">
         <img class="img-fluid opacity-25" :src="imgUrl+movie.backdrop_path" alt="#">
       </div>

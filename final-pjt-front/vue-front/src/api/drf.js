@@ -5,6 +5,7 @@ const MOVIES = 'movies/'
 const VOTES = 'votes/'
 const COMMUNITIES = 'communities/'
 const COMMENTS = 'comments/'
+const RECOMMEND = 'recommendations/'
 const FONTAWESOME_CDN = '<script src="https://kit.fontawesome.com/25a5039376.js" crossorigin="anonymous"></script>'
 
 export default {
@@ -24,6 +25,7 @@ export default {
     votes: moviePk => HOST + MOVIES + `${moviePk}/` + VOTES,
     vote: (moviePk, votePk) =>
       HOST + MOVIES + `${moviePk}/` + VOTES + `${votePk}/`,
+    recommendation: () => HOST + MOVIES + RECOMMEND,
   },
   communities: {
     articles : () => HOST + COMMUNITIES,

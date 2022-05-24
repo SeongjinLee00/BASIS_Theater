@@ -10,6 +10,7 @@ import NotFound404 from '../views/NotFound404.vue'
 
 import MovieListView from '@/views/MovieListView.vue'
 import MovieDetailView from '@/views/MovieDetailView.vue'
+import MovieRecommendation from '@/views/MovieRecommendation.vue'
 
 import ArticleListView from '@/views/ArticleListView.vue'
 import ArticleDetailView from '@/views/ArticleDetailView.vue'
@@ -51,6 +52,11 @@ const routes = [
     path: '/movies/:moviePk',
     name: 'movie',
     component: MovieDetailView,
+  },
+  {
+    path: '/recommendations',
+    name: 'recommendations',
+    component: MovieRecommendation,
   },
   // communities
   {
