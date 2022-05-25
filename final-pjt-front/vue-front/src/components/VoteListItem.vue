@@ -5,8 +5,7 @@
       <span class="star">
         ★★★★★
       <span :style="{ width : vote.rate*10 + '%' }" >★★★★★</span></span>
-      {{vote.content}}
-      {{ payload.content }} <br>
+      {{vote.content}}<br>
     </div>
     <div class="text-secondary">
       <span v-if="isEditing">
@@ -15,10 +14,9 @@
         <span :style="{ width : starValue }" >★★★★★</span>
         <input type="range" name="rate"  id="rate"  v-model="rate" step="1" min="0" max="10">
         </span><br>
-        <label for="content">content: </label>
         <input type="text" id="content" placeholder="별점이 없으면 평가가 지워집니다." v-model="content">
         <a @click="onUpdate"
-        onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">Update</a> |
+        onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">  Update</a> |
         <a @click="switchIsEditing"
         onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">Cancle</a>
       </span>
@@ -84,6 +82,7 @@ export default {
   },
   created() {
     this.isVote()
+    this.starRate()
   }
 
 }
@@ -103,5 +102,8 @@ export default {
     color: red;
     overflow: hidden;
     pointer-events: none;
+  }
+  #content {
+    width: 300px;
   }
 </style>

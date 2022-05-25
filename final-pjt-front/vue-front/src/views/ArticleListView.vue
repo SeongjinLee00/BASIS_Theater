@@ -3,8 +3,8 @@
   <div class="my-5">
     <img class="w-100" src="../assets/communityText.png" alt="#">
   </div>
-  <div class="container">
-    <div class="" id="community">
+  <div id="body" class="container">
+    <div id="community">
       <br>
       <div class="row">
         <div class="col">총 {{articles.length}}개의 게시물이 있습니다.</div>
@@ -12,8 +12,8 @@
           <router-link :to="{ name: 'articleNew' }" class="text-secondary text-decoration-none">작성하기</router-link>
         </div>
       </div>
+      <hr>
       <div class="container" v-for="article in articles" :key="article.pk">
-        <hr>
         <div class="m-3">
           <!-- 글 이동 링크 (제목) -->
           <h3>
@@ -27,7 +27,7 @@
           {{ article.user.username }}
           <!-- 댓글 개수 -->
           | {{article.created_at.substr(0,10)}}
-          </p>
+          </p><hr>
         </div>
       </div>
     </div>
@@ -53,4 +53,7 @@
 </script>
 
 <style>
+#body {
+  height: 800px;
+}
   </style>

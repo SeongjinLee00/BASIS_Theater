@@ -147,7 +147,6 @@ export default {
       })
         .then(() => {
           dispatch('removeToken')
-          alert('성공적으로 logout!')
           router.push({ name: 'login' })
         })
         .error(err => {

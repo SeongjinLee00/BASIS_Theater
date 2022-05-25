@@ -3,7 +3,7 @@
   <div class="genre-movies">
   <div class="container pt-4 pb-5">
       <div class="row">
-      <genre-movie class="col-3" v-for="movie in movieList" :key="movie.pk" :movie="movie"></genre-movie>
+      <genre-movie class="col-lg-3 " v-for="movie in movieList" :key="movie.pk" :movie="movie"></genre-movie>
       </div>
   </div>
   </div>

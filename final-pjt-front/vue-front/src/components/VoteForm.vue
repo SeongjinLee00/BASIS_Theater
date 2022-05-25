@@ -7,7 +7,7 @@
     <input type="range" name="rate" id="rate" class="my-2" v-model="rate" value="1" step="1" min="0" max="10">
     </span>
     <br>
-    <input class="mb-3" type="text" id="content" placeholder="별점이 없으면 평가가 지워집니다." v-model="content">
+    <input id="inputContent" class="mb-3" type="text" placeholder="별점이 없으면 평가가 지워집니다." v-model="content">
     <button class="btn btn-warning mx-3 mb-1">vote</button>
   </form>
 </div>
@@ -35,9 +35,11 @@ export default {
       this.moviePk = this.$route.params.moviePk;
     },
     onSubmit() {
-        this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
-        this.rate = 0
-        this.content = ''
+      console.log(this.content);
+      this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
+      this.rate = 0
+      this.content = ''
+      this.starValue = 0
     },
     startRate() {
       this.starValue = this.rate*10 + '%'
@@ -78,7 +80,7 @@ export default {
     overflow: hidden;
     pointer-events: none;
   }
-  #content {
+  #inputContent {
     width: 300px;
   }
 </style>

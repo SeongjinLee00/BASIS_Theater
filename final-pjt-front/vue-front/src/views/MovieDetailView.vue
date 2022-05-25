@@ -10,7 +10,10 @@
               <img id="posterRow" class="h-100 w-100" :src="imgUrl+movie.poster_path" alt="#">
             </div>
             <div class="text-white col-4 m-5">
-              <h1>{{ movie.title }} ({{ movie.release_date.substr(0,4)}})</h1>
+              <h1>{{ movie.title }} ({{ movie.release_date.substr(0,4)}})
+                <div class="d-inline-flex btn btn-danger mb-2 me-1" type="button">
+                  {{movie.average_rate}}점
+                </div></h1>
               <div class="d-flex">
                 <div class="d-inline-flex btn btn-dark mb-2 me-1" type="button" v-for="genre in movie.genre_ids" :key="genre.id">
                   {{genre.name}}

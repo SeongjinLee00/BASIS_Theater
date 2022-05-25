@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h5 class="fw-bold my-3">평점 목록</h5>
     <ul>
       <div v-for="vote in votes" :key="vote.pk">
         <vote-list-item :vote="vote">
@@ -8,7 +7,7 @@
       </div>
       <div class="border border-warning border-2 rounded-3 my-5 p-3">
         <h5 class="">한 줄 평가하기</h5>
-        <vote-form class=""></vote-form>
+        <vote-form></vote-form>
       </div>
     </ul>
 

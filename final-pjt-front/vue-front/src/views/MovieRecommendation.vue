@@ -1,22 +1,24 @@
 <template>
   <div class="container">
-    <!-- <h1 class="my-5">{{recommend.message}}</h1> -->
-    <div class="row">
+    <h1 class="my-5">{{recommend.message}}</h1>
+    <br><br>
+    <div class="row m-2 vh-100">
       <div class="col-4" v-for="movie in recommend.recommended_movies" :key="movie.pk">
         <router-link 
           :to="{ name: 'movie', params: {moviePk: movie.id} }">
-          <div class="box">
-            <img id="posterRow" class="h-100 w-100" :src="imgUrl+movie.poster_path" alt="#">
+          <div>
+            <img id="posterRow" class="vh-25 vw-25" :src="imgUrl+movie.poster_path" alt="#">
           </div>
-          <div class="d-flex m-3">
-            <div class="row align-self-center mx-3">{{movie.title}}({{movie.release_date.slice(0,4)}})</div>
-            <div class="row mx-3 btn btn-danger" type="button">
-              {{movie.average_rate}}점
-            </div>
+          <div class="m-3">
+            <h4 class="align-self-center mx-3">{{movie.title}}
+              <!-- ({{movie.release_date.slice(0,4)}}) -->
+            <div class=" btn btn-danger" type="button">
+              {{movie.average_rate.toFixed(1)}}점
+            </div></h4>
           </div>
         </router-link>
-        <div class="d-flex">
-          <div class="d-inline-flex btn btn-light mb-2 me-1" type="button" v-for="genre in movie.genre_ids" :key="genre.pk">
+        <div class="row">
+          <div class="col-auto btn btn-light mb-2 me-1" type="button" v-for="genre in movie.genre_ids" :key="genre.pk">
             {{genre.name}}
           </div>
         </div>
@@ -52,6 +54,6 @@ export default {
 #posterRow{
   border-radius: 30px;
   width: 100%;
-  height: 100%;
+  height: 600px;
 }
 </style>
