@@ -1,5 +1,5 @@
 <template>
-  <nav class="container my-3">
+  <nav class="container mb-3 mt-4">
     <div class="d-flex align-items-center">
       <div class="flex-grow-1">
         <router-link :to="{ name: 'movies' }">

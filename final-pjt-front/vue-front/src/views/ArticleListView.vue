@@ -19,13 +19,14 @@
           <h3>
           <router-link class="fw-bold text-black text-decoration-none"
             :to="{ name: 'article', params: {articlePk: article.pk} }">
-            {{ article.title }} [{{ article.comments.length }}]
+            {{ article.title }} <span class="fs-4">[{{ article.comments.length }}]</span>
           </router-link></h3>
           <div class="my-3">{{article.content.slice(0,20)}}</div>
           <p class="text-secondary ">
-          <!-- 작성자 -->
-          {{ article.user.username }}
-          <!-- 댓글 개수 -->
+          <!-- 작성자 -->          
+          <router-link :to="{ name: 'profile', params: { username : article.user.username } }">
+            {{ article.user.username }}
+          </router-link>
           | {{article.created_at.substr(0,10)}}
           </p><hr>
         </div>

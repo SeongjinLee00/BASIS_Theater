@@ -11,12 +11,12 @@
 
   <div class="container">
     <div v-for="(genre, name) in movies" :key="genre">
-      <h1 class="mt-5" v-if="name==='actions'">근본 액션 영화</h1>
-      <h1 class="mt-5" v-if="name==='animations'">근본 애니메이션</h1>
-      <h1 class="mt-5" v-if="name==='comedys'">근본 코미디 영화</h1>
-      <h1 class="mt-5" v-if="name==='dramas'">근본 드라마</h1>
-      <h1 class="mt-5" v-if="name==='horrors'">근본 공포 영화</h1>
-      <h1 class="mt-5" v-if="name==='romances'">근본 로맨스 영화</h1>
+      <h1 class="mt-5 fw-bold" v-if="name==='actions'">근본 액션 영화</h1>
+      <h1 class="mt-5 fw-bold" v-if="name==='animations'">근본 애니메이션</h1>
+      <h1 class="mt-5 fw-bold" v-if="name==='comedys'">근본 코미디 영화</h1>
+      <h1 class="mt-5 fw-bold" v-if="name==='dramas'">근본 드라마</h1>
+      <h1 class="mt-5 fw-bold" v-if="name==='horrors'">근본 공포 영화</h1>
+      <h1 class="mt-5 fw-bold" v-if="name==='romances'">근본 로맨스 영화</h1>
       <genre-movies :movieList="genre"></genre-movies>
         
     </div>
