@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Logout</h1>
+  <div class="container">
+    <h1>다시 만나요!</h1>
   </div>
 </template>
 

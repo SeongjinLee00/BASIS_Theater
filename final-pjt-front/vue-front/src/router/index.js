@@ -129,7 +129,7 @@ router.beforeEach((to, from, next) => {
   const isAuthRequired = !noAuthPages.includes(to.name)
 
   if (isAuthRequired && !isLoggedIn) {
-    alert('Require Login. Redirecting..')
+    alert('로그인이 필요해요!')
     next({ name: 'login' })
   } else {
     next()
