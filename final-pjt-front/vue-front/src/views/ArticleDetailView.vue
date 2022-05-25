@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="my-5">
-      <div class="m-2">
+      <div class="m-2 mb-5">
         <router-link class="text-success" :to="{ name: 'articles' }">>> 목록</router-link>
       </div>
       <h1>{{ article.title }}</h1>
@@ -29,15 +29,15 @@
         Delete</a>
       </div>
 
-      <div id="authorProfile">
+      <!-- <div id="authorProfile">
         <router-link class="text-secondary" :to="{ name: 'profile', params: { username } }">
           {{ article.user.username }}님의 게시글 더보기 >
         </router-link>
-      </div>
+      </div> -->
     </div>
 
     <!-- Comment UI -->
-    <p>댓글 {{article.comments.length}}</p>
+    <p class="fw-bold mt-5 pt-5">댓글 {{article.comments.length}}</p>
     <hr>
       <comment-list :comments="article.comments"></comment-list>
 

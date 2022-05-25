@@ -4,8 +4,8 @@
       {{ comment.user.username }}
     </router-link>
     <div v-if="!isEditing">
-      {{ payload.content }} <br>
-      {{comment.created_at.substr(0,10)}} {{comment.created_at.slice(11,16)}}
+      <div class="mt-2 mb-2">{{ payload.content }} <br></div>
+      <div class="fs-6 text-muted">{{comment.created_at.substr(0,10)}} {{comment.created_at.slice(11,16)}}</div>
     </div>
     <div class="text-secondary">
       <span v-if="isEditing">

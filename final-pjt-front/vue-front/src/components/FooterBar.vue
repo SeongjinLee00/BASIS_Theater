@@ -1,5 +1,10 @@
 <template>
-  <hr>
+  <div>
+    <div class="my-5">&nbsp;</div>
+    <div class="my-5">&nbsp;</div>
+    <div class="my-5">&nbsp;</div>
+    <div class="my-5">&nbsp;</div>
+  </div>
 </template>
 
 <script>

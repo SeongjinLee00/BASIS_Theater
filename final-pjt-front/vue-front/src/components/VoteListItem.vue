@@ -6,7 +6,11 @@
         ★★★★★
       <span :style="{ width : vote.rate*10 + '%' }" >★★★★★</span></span>
       <br>
-      {{vote.username}}<span class="mx-2"></span>{{vote.content}}<br>
+    <router-link :to="{ name: 'profile', params: { username: vote.username } }" class="fw-bold text-black text-decoration-none">
+      {{vote.username}}<span class="mx-2"></span>
+    </router-link>
+      {{vote.content}}<br>
+
     </div>
     <div class="text-secondary">
       <span v-if="isEditing">

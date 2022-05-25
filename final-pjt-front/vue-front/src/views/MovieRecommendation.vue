@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <h1 class="my-5">{{recommend.message}}</h1>
+    <h1 class="my-5 pt-5">{{recommend.message}}</h1>
+    <h4 class="my-5">{{recommend.message2}}</h4>
     <br><br>
     <div class="row m-2 vh-100">
       <div class="col-4" v-for="movie in recommend.recommended_movies" :key="movie.pk">
@@ -10,15 +11,15 @@
             <img id="posterRow" class="vh-25 vw-25" :src="imgUrl+movie.poster_path" alt="#">
           </div>
           <div class="m-3">
-            <h4 class="align-self-center mx-3">{{movie.title}}
+            <h4 class="align-self-center mx-2 fw-bold fs-4 mt-4 mb-4">{{movie.title}}
               <!-- ({{movie.release_date.slice(0,4)}}) -->
-            <div class=" btn btn-danger" type="button">
-              {{movie.average_rate ? movie.average_rate.toFixed(1) : 0}}점
+            <div class=" btn btn-danger ms-2" type="button">
+              {{movie.average_rate ? movie.average_rate.toFixed(1) : '0.0'}}
             </div></h4>
           </div>
         </router-link>
         <div class="row">
-          <div class="col-auto btn btn-light mb-2 me-1" type="button" v-for="genre in movie.genre_ids" :key="genre.pk">
+          <div class="col-auto btn btn-light mb-3 me-1" type="button" v-for="genre in movie.genre_ids" :key="genre.pk">
             {{genre.name}}
           </div>
         </div>

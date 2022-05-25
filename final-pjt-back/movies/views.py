@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Movie, Vote
+from accounts.models import User
 from .serializers import MovieListSerializer, MovieDetailSerializer, VoteSerializer
 from rest_framework import status
 import random
@@ -12,9 +13,6 @@ import time
 # Create your views here.
 
 @api_view(['GET'])
-# 장르별로 10개나 20개정도 주는거어때?
-# 액션(1), 애니메이션(3), 코미디(4), 드라마(7), 공포(11), 로맨스(14)
-# [0:10]     [10:20]      [20:30]    [30:40]   [40:50]  [50:60]
 def movie_list(request):
     movies1 = Movie.objects.filter(genre_ids=1)
     serializer1 = MovieListSerializer(movies1, many=True)
@@ -43,7 +41,14 @@ def movie_list(request):
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = MovieDetailSerializer(movie)
-    return Response(serializer.data)
+    newdict=dict()
+    newdict.update(serializer.data)
+    
+    for vote in newdict['vote_set']:
+        thisuser = User.objects.get(id=vote['user'])
+        username = thisuser.username
+        vote['username'] = username
+    return Response(newdict)
 
 @api_view(['POST'])
 def create_vote(request, movie_pk):
@@ -62,7 +67,9 @@ def create_vote(request, movie_pk):
         for item in vote_queryset:
             if item.user_id==request.user.id:
                 continue
-            vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id})
+            thisuser = User.objects.get(id=item.user_id)
+            username = thisuser.username
+            vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id, "username":username})
         return Response(vote_list, status=status.HTTP_200_OK)
 
     elif len(before_vote)==0: # 0점 안보냈을 때, 기존에 없으면 create
@@ -74,7 +81,10 @@ def create_vote(request, movie_pk):
             vote_list=[]
 
             for item in vote_queryset:
-                vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id})
+                thisuser = User.objects.get(id=item.user_id)
+                username = thisuser.username
+
+                vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id, "username":username})
 
             return Response(vote_list, status=status.HTTP_201_CREATED)
     
@@ -88,7 +98,10 @@ def create_vote(request, movie_pk):
             vote_list=[]
 
             for item in vote_queryset:
-                vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id})
+                thisuser = User.objects.get(id=item.user_id)
+                username = thisuser.username
+
+                vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id, "username":username})
 
             return Response(vote_list, status=status.HTTP_201_CREATED)
     
@@ -236,16 +249,17 @@ def recommendations(request):
         romance_movies = Movie.objects.filter(Q(id=sample[0])|Q(id=sample[1])|Q(id=sample[2]))
         serializer = MovieDetailSerializer(romance_movies, many=True)
         message = '로맨스가 필요한 당신에게 추천하는 근본 로맨스 영화'
-
+    message2 = ''
     power_dict['overall_power'] = overall_cnt/overall_len*100
-    if max(list(power_dict.values()))<5:
+    if min(list(power_dict.values()))==0:
         # return Response({
         #     'recommended_movies' : [],
         #     'powers' : power_dict,
-        message = '평가를 좀 더 해주셔야 더 영화를 잘 추천드릴 수 있어요ㅠ'
+        message2 = '평가 갯수가 너무 적어 추천이 정확하지 않을 수 있어요'
             # })
     return Response({
         'recommended_movies' : serializer.data,
         'powers' : power_dict,
-        'message' : message
+        'message' : message,
+        'message2' : message2
         })

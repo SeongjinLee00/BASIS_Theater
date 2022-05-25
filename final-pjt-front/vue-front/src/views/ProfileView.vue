@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="my-5">
-      <h1 class="mb-5">{{ profile.profile.username }}님, 반가워요!</h1>
+      <h1 class="mb-5">{{ profile.profile.username }}님의 근본력</h1>
       <!-- <p class="text-secondary">평가영화 {{ profile.votesCount }} | 작성글 {{ profile.articles }}</p> -->
       <p class="mt-4 mb-1">근본력 : {{ profile.overall_power}}%</p>
       <div class="progress">
@@ -23,9 +23,9 @@
       <div class="progress">
         <div class="progress-bar" role="progressbar" v-bind:style="{width : profile.drama_power+'%'}" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
-      <p class="mt-4 mb-1">공포력 : {{profile.romance_power}}%</p>
+      <p class="mt-4 mb-1">공포력 : {{profile.horror_power}}%</p>
       <div class="progress">
-        <div class="progress-bar" role="progressbar" v-bind:style="{width : profile.romance_power+'%'}" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar" role="progressbar" v-bind:style="{width : profile.horror_power+'%'}" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <p class="mt-4 mb-1">로맨스력 : {{profile.romance_power}}%</p>
       <div class="progress">
