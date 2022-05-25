@@ -13,7 +13,7 @@
             <h4 class="align-self-center mx-3">{{movie.title}}
               <!-- ({{movie.release_date.slice(0,4)}}) -->
             <div class=" btn btn-danger" type="button">
-              {{movie.average_rate.toFixed(1)}}점
+              {{movie.average_rate ? movie.average_rate.toFixed(1) : 0}}점
             </div></h4>
           </div>
         </router-link>
