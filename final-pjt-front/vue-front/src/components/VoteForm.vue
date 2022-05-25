@@ -35,7 +35,6 @@ export default {
       this.moviePk = this.$route.params.moviePk;
     },
     onSubmit() {
-      console.log(this.content);
       this.createVote({ moviePk: this.moviePk, rate: this.rate, content: this.content, })
       this.rate = 0
       this.content = ''

@@ -5,7 +5,8 @@
       <span class="star">
         ★★★★★
       <span :style="{ width : vote.rate*10 + '%' }" >★★★★★</span></span>
-      {{vote.content}}<br>
+      <br>
+      {{vote.username}}<span class="mx-2"></span>{{vote.content}}<br>
     </div>
     <div class="text-secondary">
       <span v-if="isEditing">
