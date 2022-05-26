@@ -16,12 +16,12 @@
       <hr>
 
       <div class="my-5">
-        <p>{{ article.content }}</p>
+        <pre style="font-family:Cafe24SsurroundAir;" class="fs-6">{{ article.content }}</pre>
       </div>
       <!-- Article Edit/Delete UI -->
-      <div v-if="isAuthor" class="text-end">
+      <div v-if="isAuthor" class="text-end" >
         <router-link :to="{ name: 'articleEdit', params: { articlePk } }">
-          <a>Edit</a>
+          <a onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">Edit</a>
         </router-link>
         |
         <a @click="deleteArticle(articlePk)" 
