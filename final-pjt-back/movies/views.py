@@ -107,16 +107,20 @@ def create_vote(request, movie_pk):
     
 @api_view(['DELETE', 'PUT'])
 def update_or_delete_vote(request, movie_pk, vote_pk):
-    vote = Vote.objects.get(pk=vote_pk)
-    votes = Vote.objects.filter(movie_id=movie_pk)
+    vote = Vote.objects.get(movie_id=movie_pk, user_id=request.user.id)
     if request.method=='DELETE':
         vote.delete()
-        # data = {
-        #     "delete": f"vote {vote_pk} is deleted"
-        # }
-        votes = Vote.objects.filter(movie_id=movie_pk)
-        serializer = VoteSerializer(votes, many=True)
-        return Response(serializer.data)
+        vote_queryset=Vote.objects.filter(movie_id=movie_pk)
+        vote_list=[]
+
+        for item in vote_queryset:
+            if item.user_id==request.user.id:
+                continue
+            thisuser = User.objects.get(id=item.user_id)
+            username = thisuser.username
+
+            vote_list.append({"id":item.id, "rate":item.rate, "content":item.content, "movie":item.movie_id, "user":item.user_id, "username":username})
+        return Response(vote_list)
     
     elif request.method=='PUT':
         serializer = VoteSerializer(vote, data=request.data, partial=True)
