@@ -10,8 +10,8 @@
     <div class="text-secondary">
       <span v-if="isEditing">
         <input type="text" v-model="payload.content" required><br>
-        <a @click="onUpdate">Update</a> |
-        <a @click="switchIsEditing">Cancle</a>
+        <a @click="onUpdate" onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">Update</a> |
+        <a @click="switchIsEditing" onmouseover="this.style.color='orange';" onmouseout="this.style.color='';">Cancle</a>
       </span>
       <span v-if="currentUser.username === comment.user.username && !isEditing">
         <a @click="switchIsEditing"
