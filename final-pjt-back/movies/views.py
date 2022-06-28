@@ -55,7 +55,6 @@ def create_vote(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
     user = request.user
     before_vote = Vote.objects.filter(movie_id=movie_pk, user_id=request.user.pk)
-    print(request.data['rate'])
     if request.data['rate']==0 or request.data['rate']=='0': # 0점 보내면 삭제
         if len(before_vote)>=1:
             before_vote.delete()
