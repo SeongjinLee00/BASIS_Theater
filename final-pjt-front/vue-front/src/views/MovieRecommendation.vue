@@ -14,11 +14,7 @@
             <h4 class="align-self-center mx-2 fw-bold fs-4 mt-4 mb-4">{{movie.title}}
               <!-- ({{movie.release_date.slice(0,4)}}) -->
             <div class=" btn btn-danger ms-2" type="button">
-<<<<<<< HEAD
-              {{ movie.average_rate.toFixed(1)}}
-=======
               {{movie.average_rate.toFixed(1)}}
->>>>>>> ddaa5a8393a2b8b70dc4c9d302f7f62d85af3609
             </div></h4>
           </div>
         </router-link>
